@@ -1,0 +1,26 @@
+#!/bin/bash
+
+
+git config codedeploy.domain nosey.com
+git config codedeploy.region us-west-2
+#git config codedeploy.git-remote git@github.com:ibejohn818/nosey.com.git
+git config codedeploy.git-remote git@dotstudioz.git.beanstalkapp.com:/dotstudioz/react.git
+
+
+# PRODUCTION
+
+git config codedeploy.prod.aws-profile nosey-prod
+git config codedeploy.prod.bucket nosey-prod-s3-codedeploy-10ci4aootf5ww
+git config codedeploy.prod.app-name nosey-prod-code-deploy-Web-IUT5CWB8T1ZE
+git config codedeploy.prod.app-group nosey-prod-code-deploy-WebGroup-1DOTOB99H8USN
+git config codedeploy.prod.branch master
+
+
+
+# STAGING
+
+git config codedeploy.staging.aws-profile nosey-staging
+git config codedeploy.staging.bucket nosey-staging-s3-codedeploy-ezintqxqj2k5
+git config codedeploy.staging.app-name nosey-staging-code-deploy-Web-WU2OKVBSTG5P
+git config codedeploy.staging.app-group nosey-staging-code-deploy-WebGroup-PFBQIPKSG6JU
+git config codedeploy.staging.branch staging

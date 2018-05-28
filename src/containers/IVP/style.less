@@ -1,0 +1,64 @@
+@import (reference) "../../theme/variables.less";
+
+.seasonRail {
+	h2 {
+		color: @font-color
+	}
+	.railItem.seasonItem {
+		&.selected {
+			span {
+				display: block;
+				position: absolute;
+				top: 5px;
+				left: 30px;
+				color: @alternate4-color;
+				text-shadow: 2px 0px 2px rgba(0, 0, 0, 1);
+			}
+			img {
+				opacity: .4;
+			}
+		}
+		a:hover {
+			text-decoration: none;
+		}
+		span {
+			display: none;
+		}
+		div {
+			position:relative;
+			h4 {
+				background-color: rgba(0, 0, 0, 0.8);
+				padding: 4px;
+				min-height: 40px;
+				position: absolute;
+				width: 100%;
+				height: 40px;
+				bottom: 0px;
+				font-size:1.2rem;
+			}
+		}
+	}
+}
+.morelikethisRail {
+	h2 span {
+		color: @font-color;
+	}
+
+
+}
+
+.comments-spacer {
+	height:50px;
+	background-color:@base4-color;
+}
+
+.comments-container{
+	text-align:center;
+	padding:50px 0;
+	background: rgba(25,25,50,0.8);
+	.fb_hide_iframes iframe{
+		position:inherit;
+		left:0;
+	}
+
+}

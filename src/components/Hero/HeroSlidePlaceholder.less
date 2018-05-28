@@ -1,0 +1,201 @@
+@import (reference) "../../theme/variables.less";
+
+/* HERO SLIDE PLACEHOLDER CSS */
+
+.hero-timeline-item {
+    background: @alternate2-color;
+    /*border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 3px;
+    */
+    padding: 12px;
+
+    margin: 0 auto;
+    /*max-width: 472px;
+    min-height: 100px;
+    */
+    height:100%;
+}
+
+
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}
+
+.hero-animated-background {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: @alternate5-color;
+    background: linear-gradient(to right, #1E1F23 8%, #53667B 18%, #1E1F23 33%);
+    background-size: 800px 104px;
+    height: 100%;
+    position: relative;
+}
+
+.hero-background-masker {
+    background: @alternate2-color;
+    position: absolute;
+}
+
+/* Every thing below this is just positioning */
+
+.hero-background-masker.header-top,
+.hero-background-masker.header-bottom,
+.hero-background-masker.subheader-bottom {
+    top: 0;
+    left: 40px;
+    right: 0;
+    height: 10px;
+}
+
+.hero-background-masker.header-left,
+.hero-background-masker.subheader-left,
+.hero-background-masker.header-right,
+.hero-background-masker.subheader-right {
+    top: 10px;
+    left: 40px;
+    height: 8px;
+    width: 10px;
+}
+
+.hero-background-masker.header-bottom {
+    top: 18px;
+    height: 6px;
+}
+
+.hero-background-masker.subheader-left,
+.hero-background-masker.subheader-right {
+    top: 24px;
+    height: 6px;
+}
+
+
+.hero-background-masker.header-right,
+.hero-background-masker.subheader-right {
+    width: auto;
+    left: 300px;
+    right: 0;
+}
+
+.hero-background-masker.subheader-right {
+    left: 230px;
+}
+
+.hero-background-masker.subheader-bottom {
+    top: 30px;
+    height: 10px;
+}
+
+.hero-background-masker.content-top,
+.hero-background-masker.content-second-line,
+.hero-background-masker.content-third-line,
+.hero-background-masker.content-second-end,
+.hero-background-masker.content-third-end,
+.hero-background-masker.content-first-end {
+    top: 40px;
+    left: 0;
+    right: 0;
+    height: 6px;
+}
+
+.hero-background-masker.content-top {
+    height:20px;
+}
+
+.hero-background-masker.content-first-end,
+.hero-background-masker.content-second-end,
+.hero-background-masker.content-third-end{
+    width: auto;
+    left: 380px;
+    right: 0;
+    top: 60px;
+    height: 8px;
+}
+
+.hero-background-masker.content-second-line  {
+    top: 68px;
+}
+
+.hero-background-masker.content-second-end {
+    left: 420px;
+    top: 74px;
+}
+
+.hero-background-masker.content-third-line {
+    top: 82px;
+}
+
+.hero-background-masker.content-third-end {
+    left: 500px;
+    top: 88px;
+}
+
+.hero-background-masker.content-fourth-line {
+    top: 96px;
+}
+
+.hero-background-masker.content-fourth-end {
+    left: 475px;
+    top: 102px;
+}
+
+.hero-background-masker.content-fifth-line {
+    top: 110px;
+}
+
+.hero-background-masker.content-fifth-end {
+    left: 250px;
+    top: 116px;
+}
+
+.hero-background-masker.content-sixth-line {
+    top: 124px;
+}
+
+.hero-background-masker.content-sixth-end {
+    left: 500px;
+    top: 130px;
+}
+
+.hero-background-masker.content-seventh-line {
+    top: 138px;
+}
+
+.hero-background-masker.content-seventh-end {
+    left: 500px;
+    top: 144px;
+}
+
+
+.hero-background-masker.content-eighth-line {
+    top: 152px;
+}
+
+.hero-background-masker.content-eighth-end {
+    left: 500px;
+    top: 158px;
+}
+.hero-background-masker.content-ninth-line {
+    top: 166px;
+}
+
+.hero-background-masker.content-ninth-end {
+    left: 500px;
+    top: 172px;
+}
+.hero-background-masker.content-tenth-line {
+    top: 180px;
+}
+
+.hero-background-masker.content-tenth-end {
+    left: 500px;
+    top: 186px;
+}

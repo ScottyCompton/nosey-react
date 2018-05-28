@@ -1,0 +1,205 @@
+@import "./reset.less";
+@import "./bootstrap-columns.less";
+@import "./fonts.less"; // Source-Sans Pro font as specified in Nosey's style guide
+@import (reference) "../../theme/variables.less";
+@import "./react-progress-bar.css";
+
+.app {
+  .brand {
+    position: absolute;
+    @size: 40px;
+    top: 5px;
+    left: 5px;
+    display: inline-block;
+    background: #2d2d2d url('../Home/logo.png') no-repeat center center;
+    width: @size;
+    height: @size;
+    background-size: 80%;
+    margin: 0 10px 0 0;
+    border-radius: @size / 2;
+  }
+  nav :global(.fa) {
+    font-size: 2em;
+    line-height: 20px;
+  }
+}
+
+.appContent {
+  margin: 50px 0; // for fixed navbar
+}
+
+#content {
+  background: @base2-color;
+}
+
+.big-ol-container {
+  width: 100%;
+  margin-top: 70px;
+  // margin-left:5%;
+}
+
+// Main Styles
+
+.container {
+  margin: auto;
+}
+
+html {
+  background: @base2-color;
+  overflow-x: hidden;
+}
+
+html, body {
+  height:100%;
+  background:#000;
+}
+
+h5 {
+  font-size: 13px;
+}
+
+h4 {
+  font-size: 14px;
+}
+
+h3 {
+  font-size: 16px;
+  text-transform: uppercase;
+  color: @brand-accent-color;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+a {
+  color: @font2-color;
+  text-decoration: none;
+}
+
+a:hover {
+  color: @font-color;
+  cursor: pointer;
+}
+
+//Helpers
+
+.margintop30 {
+  margin-top: 30px;
+}
+
+
+.basic-text {
+  color:#fff;
+  .row {
+    padding:10px 0;
+    div {
+      font-size:1.0rem;
+    }
+  }
+  h1 {
+    font-size:1.2rem;
+    color: @brand-accent-color;
+    padding-top:30px;
+    padding-bottom:15px;
+  }
+  h4 {
+    font-size:1.2rem;
+    color: @brand-accent-color;
+    padding-top:30px;
+    padding-bottom:15px;
+  }
+  ul {
+    list-style-type:disc;
+    margin-left:20px;
+    padding: 10px 0;
+  }
+  li > ul {
+    list-style-type:circle;
+  }
+
+}
+
+/* FOOTER STYLES */
+
+.footer-upper {
+  background: @base-color;
+  text-align: center;
+  padding: 2% 0;
+  p {
+    color: @font2-color;
+    font-size: 22px;
+    padding-bottom: 25px;
+    display:inline-block;
+  }
+  .footer-platforms {
+    div {
+      padding: 0;
+    }
+    img {
+      width: 90%;
+    }
+  }
+}
+
+.footer-lower {
+  min-height: 50px;
+  div {
+    padding: 10px;
+
+    a {
+      color: @font5-color;
+      font-size: 0.9rem;
+      text-decoration: none;
+      padding: 10px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+    .footer-icon {
+      position:relative;
+      float:right;
+      right:30px;
+      margin-right:10px;
+      color:@brand-accent-color;
+    }
+  }
+}
+
+/* END FOOTER STYLES */
+
+/* STATIC PAGE CONTENT STYLES */
+
+.static-content {
+  margin: 20px 0;
+  h1, div {
+    color: @font-color;
+  }
+  h1 {
+    font-size: 2.5rem;
+  }
+  p {
+    margin: 20px 0;
+  }
+}
+
+
+
+
+@media(max-width:600px) {
+
+  .basic-text {
+    .row {
+      padding:10px 0;
+      div {
+        font-size:0.9rem;
+        padding:10px 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,234 @@
+@import (reference) "../../theme/variables.less";
+
+@modal-prefix:               modal;
+
+@line-height-base:           1.428571429; // 20/14
+@font-size-base:             14px;
+
+@border-radius-large:        6px;
+
+@screen-sm:                  768px;
+@screen-sm-min:              @screen-sm;
+
+@screen-md:                  992px;
+@screen-md-min:              @screen-md;
+
+
+@close-font-weight:           bold;
+@close-color:                 #000;
+@close-text-shadow:           0 1px 0 #000;
+
+@modal-inner-padding:         0px;
+
+@modal-title-padding:         15px;
+@modal-title-line-height:     @line-height-base;
+
+@modal-content-bg:            #000;
+@modal-content-border-color:  rgba(0,0,0,.2);
+@modal-content-fallback-border-color:  #999;
+
+@modal-backdrop-bg:           #000;
+@modal-backdrop-opacity:      .7;
+@modal-header-border-color:   #000;
+@modal-footer-border-color:   @modal-header-border-color;
+
+@zindex-modal-background:     1040;
+@zindex-modal:                1050;
+
+@modal-lg:                    900px;
+@modal-md:                    600px;
+@modal-sm:                    300px;
+
+/*
+ * mixins
+ */
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
+  box-shadow: @shadow;
+}
+
+.translate(@x; @y) {
+  -webkit-transform: translate(@x, @y);
+  -ms-transform: translate(@x, @y); // IE9 only
+  -o-transform: translate(@x, @y);
+  transform: translate(@x, @y);
+}
+
+.transition(@transition) {
+  -webkit-transition: @transition;
+  -o-transition: @transition;
+  transition: @transition;
+}
+
+.transition-transform(@transition) {
+  -webkit-transition: -webkit-transform @transition;
+  -moz-transition: -moz-transform @transition;
+  -o-transition: -o-transform @transition;
+  transition: transform @transition;
+}
+
+.opacity(@opacity) {
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
+}
+
+/*
+Animate.css - http://daneden.me/animate
+Licensed under the ☺ license (http://licence.visualidiot.com/)
+Copyright (c) 2012 Dan Eden*/
+.animated {
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes shake {
+  0%, 100% {-webkit-transform: translateX(0);}
+  10%, 30%, 50%, 70%, 90% {-webkit-transform: translateX(-10px);}
+  20%, 40%, 60%, 80% {-webkit-transform: translateX(10px);}
+}
+
+@-moz-keyframes shake {
+  0%, 100% {-moz-transform: translateX(0);}
+  10%, 30%, 50%, 70%, 90% {-moz-transform: translateX(-10px);}
+  20%, 40%, 60%, 80% {-moz-transform: translateX(10px);}
+}
+
+@-o-keyframes shake {
+  0%, 100% {-o-transform: translateX(0);}
+  10%, 30%, 50%, 70%, 90% {-o-transform: translateX(-10px);}
+  20%, 40%, 60%, 80% {-o-transform: translateX(10px);}
+}
+
+@keyframes shake {
+  0%, 100% {transform: translateX(0);}
+  10%, 30%, 50%, 70%, 90% {transform: translateX(-10px);}
+  20%, 40%, 60%, 80% {transform: translateX(10px);}
+}
+
+.shake {
+  -webkit-animation-name: shake;
+  -moz-animation-name: shake;
+  -o-animation-name: shake;
+  animation-name: shake;
+}
+
+/*
+ * rbm-patch
+ */
+.@{modal-prefix} {
+  display: block;
+}
+
+.@{modal-prefix}-content > .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+@media (min-width: @screen-sm-min) {
+  .@{modal-prefix}-sm > .@{modal-prefix}-dialog { width: @modal-sm; }
+}
+
+@media (min-width: @screen-md-min) {
+  .@{modal-prefix}-lg > .@{modal-prefix}-dialog{ width: @modal-lg; }
+}
+
+.@{modal-prefix}-backdrop.in {
+  .opacity(@modal-backdrop-opacity);
+  z-index: 1350 !important;
+}
+
+.@{modal-prefix}.in {
+  z-index: 1450 !important;
+}
+
+.register-modal {
+  width:100vw;
+  overflow:hidden;
+}
+
+.modal-content {
+  background-color:#000;
+}
+
+.reg-modal-bkg {
+  opacity:0.3;
+  z-index:3000;
+}
+
+.reg-modal-content {
+  width:100%;
+  height:100%;
+  z-index:4000;
+  position:absolute;
+  top:0px;
+
+    .reg-content h1 {
+      color:#fff;
+      margin-top:5%;
+      width:75%;
+      font-size:2.5rem;
+      margin-left:auto;
+      margin-right:auto;
+      text-align:center;
+      strong {
+        color: @brand-accent-color;
+      }
+    }
+}
+
+.modal-header {
+  border-bottom:none!important;
+  margin-top:10%;
+}
+
+.btn-block {
+  margin-top:50px;
+}
+
+.modal-body {
+  padding:0;
+}
+.modal-dialog {
+  margin:0px!important;
+  height:100%!important;
+  background-repeat:repeat;
+  background-size:contain;
+  background-color:rgb(0,0,0);
+  background-color: transparent\9;
+  background-color:rgba(0,0,0,0.4);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#66000000,endColorstr=#66000000);
+  zoom: 1;
+  background-image:url(//s3.amazonaws.com/nosey-website/montage.jpg);
+}
+.modal-content {
+  height:100%;
+  background-color:rgba(0,0,0,0.7);
+}
+
+.modal-logo {
+  width:20%;
+  margin: 0 auto;
+  position:relative;
+}
+
+@media(max-width:600px) {
+  .modal-logo {
+    width:50%;
+  }
+  .reg-modal-content .reg-content h1 {
+    line-height: 22px;
+    font-size:1.4rem;
+    span {
+      font-size: inherit!important;
+    }
+  }
+}

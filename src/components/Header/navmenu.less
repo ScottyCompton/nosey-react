@@ -1,0 +1,41 @@
+@import (reference) "../../theme/variables.less";
+
+//the dropdown contains a container that holds a list of available categories (or genres)
+//it is necessary because it has relative positioning, it's child is absolute
+.dropdown {
+    position: relative;
+    display:inline-block;
+    .navMenu{
+      z-index: 2000;
+      flex-wrap: wrap;
+      display: inline-flex;
+      flex-direction:  row;
+      position:relative;
+      justify-content:flex-start;
+      min-width:300px;
+      margin-right:2%;
+      border-left:10px solid #61F061;
+      border-bottom:1px solid #505050;
+      border-right:1px solid #303030;
+      background: #2b2d33; /* Old browsers */
+      background: -moz-linear-gradient(top,  #2b2d33 0%, #1a1a1a 80%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  #2b2d33 0%,#1a1a1a 80%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  #2b2d33 0%,#1a1a1a 80%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b2d33', endColorstr='#1a1a1a',GradientType=0 ); /* IE6-9 */
+      box-shadow: 10px 10px 5px @base2-color;
+      webkit-box-shadow: 10px 10px 5px @base2-color;
+      moz-box-shadow: 10px 10px 5px @base2-color;
+      div {
+        font-size:0.8rem;
+        a:hover {
+          text-decoration:none;
+        }
+      }
+    }
+}
+
+.show{
+  //display:inline-block!important; //to override default bootstrap important show/hide tag for now
+  position:absolute;
+  left:200px;
+}

@@ -1,0 +1,128 @@
+@import (reference) "../../theme/variables.less";
+
+button.vjs-button {
+  font-family: 'VideoJS' !important;
+}
+
+.video-js .vjs-control-bar .vjs-icon-hd {
+  right: 41px;
+  font-size: 10px;
+}
+
+.vjs-chromecast-button {
+  font-size: 9px;
+  top: 2px;
+}
+
+.video-js .vjs-control-bar .vjs-captions-button {
+  .vjs-menu {
+    margin-bottom:5px;
+    ul li{
+      font-size:14px;
+    }
+    .vjs-texttrack-settings{
+      display:none;
+      opacity: 0;
+      width:0;
+      height:0;
+    }
+  }
+}
+
+.top-controls {
+  padding: 10px;
+  margin-bottom: 20px;
+  // line-height: 0px;
+  background: @base3-color;
+
+  .video-info {
+    h3 {
+      text-transform: uppercase;
+    }
+  }
+  .tools {
+    margin-right: 10px;
+
+    li {
+      list-style: none;
+      float: right;
+    }
+  }
+  .drawer {
+    margin: 0 10%;
+    span {
+      color: @font5-color;
+    }
+  }
+  .video-next {
+    float: right;
+    padding-right: 50px;
+  }
+  .video-previous {
+    float: left;
+    padding-left: 50px;
+  }
+}
+
+.hide-me {
+  max-height: 0;
+  transition: all 1000ms ease !important;
+  overflow: hidden;
+}
+
+.show-me {
+  max-height: 500px;
+  opacity: 100;
+  transition: all 1000ms ease !important;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.below-controlbar-title-seriestitle {
+  display:none;
+}
+
+.control-bar-title-seriestitle {
+  display:block;
+}
+
+
+@media(max-width:800px) {
+  .top-controls .video-previous {
+    padding-left:0;
+  }
+  .top-controls .video-next {
+    padding-right:0;
+    right:0px;
+  }
+}
+
+@media(max-width:650px) {
+  .control-bar-title-seriestitle {
+    display:none;
+  }
+  .below-controlbar-title-seriestitle {
+    display:block;
+    margin-left:15px;
+    background-color:@base2-color;
+  }
+}
+
+
+@media(max-width:600px) {
+
+  .top-controls .video-previous {
+    position:absolute;
+    float:none;
+  }
+  .top-controls .video-next {
+    position:absolute;
+    float:none;
+    right:10px;
+  }
+
+  .player-area .top-controls {
+    padding-top:0;
+    padding-bottom:0;
+  }
+}

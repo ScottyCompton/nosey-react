@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.DS_Store
+npm-debug.log
+/.idea
+newrelic_agent.log
+/webpack-assets.json
+webpack-stats.json
+/test/reports
+/newrelic_agent.log

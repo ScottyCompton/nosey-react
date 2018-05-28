@@ -1,0 +1,60 @@
+@import (reference) "../../theme/variables.less";
+
+.nav {
+  position: fixed !important;
+  top: 0 !important;
+  .navBrand {
+    max-height: 40px;
+    margin: 10px;
+    vertical-align: middle;
+    z-index:2000!important;
+  }
+  button, span {
+    color: white;
+    font-size: 18px;
+  }
+  .getApp {
+    float: right !important;
+    margin-left: 5px !important;
+    top: 5px;
+    span {
+      color: @brand-accent-color !important;
+    }
+  }
+  h1{
+    display:none;
+  }
+}
+
+.navTitle {
+  font-size: 24px;
+  padding: 20px;
+  display: inline-block;
+  color: @brand-accent-color;
+  font-weight: bold;
+}
+
+.user-profile-dropdown {
+  float: right;
+  margin-top: 10px;
+  width: 70px;
+  cursor: pointer;
+  img {
+    float: right;
+    margin-right: 20px;
+  }
+}
+
+
+@media (max-width:1000px) {
+  .nav button, .nav span {
+    color: white;
+    font-size: 14px;
+  }
+}
+
+@media (max-width:500px) {
+  button.hdr-btn {
+    display:none!important;
+  }
+}

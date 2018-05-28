@@ -1,0 +1,117 @@
+#!/bin/bash
+
+if [[ ! -d ./.git ]]; then
+	echo "ERROR: You must be in the root of the git repo"
+	exit 1
+fi
+
+./codedeploy/config
+
+AWS="/usr/local/bin/aws"
+AWK="/usr/bin/awk"
+HEAD="/usr/bin/head"
+SED="/usr/bin/sed"
+CAT="/bin/cat"
+
+
+#CONFIG
+GIT_REMOTE=$(git config --get codedeploy.git-remote)
+REGION=$(git config --get codedeploy.region)
+DOMAIN=$(git config --get codedeploy.domain)
+PACKAGING_PATH=/tmp
+
+#STAGING
+STAGING_PROFILE=$(git config --get codedeploy.staging.aws-profile)
+STAGING_BUCKET=$(git config --get codedeploy.staging.bucket)
+STAGING_APP=$(git config --get codedeploy.staging.app-name)
+STAGING_GROUP=$(git config --get codedeploy.staging.app-group)
+STAGING_BRANCH=$(git config --get codedeploy.staging.branch)
+
+#PRODUCTION
+PROD_PROFILE=$(git config --get codedeploy.prod.aws-profile)
+PROD_BUCKET=$(git config --get codedeploy.prod.bucket)
+PROD_APP=$(git config --get codedeploy.prod.app-name)
+PROD_GROUP=$(git config --get codedeploy.prod.app-group)
+PROD_BRANCH=$(git config --get codedeploy.prod.branch)
+
+
+CURRENT_BRANCH="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
+                        git rev-parse --short HEAD 2> /dev/null || \
+                       '')";
+deploy_revision() {
+
+	echo "DEPLOYING: ${DEPLOY_MODE}"
+
+	git branch -r --contains ${COMMIT_HASH} | grep -q origin/${BRANCH_NAME}
+
+	if [[ $? != 0 ]]; then
+		echo "!ERROR: ${CURRENT_BRANCH} must be pushed to remote to deploy!"
+		echo "IE: git push origin ${BRANCH_NAME}"
+		echo "EXITING...."
+		exit 1;
+	fi
+
+	COMMIT_HASH=$(git rev-parse --verify HEAD)
+	PKG_NAME=$(date +%Y-%m-%d:%H:%M:%S).zip
+	PKG_DIR=$(LC_ALL=C tr -dc 'A-Za-z0-9\-' </dev/urandom | head -c 13 ; echo)
+	PKG_PATH="${PACKAGING_PATH}/${PKG_DIR}"
+
+	mkdir -p -m0777 $PKG_PATH
+
+	cp -r ./codedeploy/scripts ${PKG_PATH}/.
+	cp ./codedeploy/appspec.yml ${PKG_PATH}/.
+	echo $COMMIT_HASH > ${PKG_PATH}/commit
+	echo $DOMAIN > ${PKG_PATH}/domain
+	echo $GIT_REMOTE > ${PKG_PATH}/git-remote
+	echo $DEPLOY_MODE > ${PKG_PATH}/deploy-mode
+
+
+
+
+	${AWS} deploy push --region ${REGION} --profile ${DEPLOY_AWS_PROFILE} \
+			--application-name ${DEPLOY_APP} \
+			--s3-location s3://${DEPLOY_BUCKET}/${PKG_NAME} \
+			--source ${PKG_PATH}/ > /dev/null
+
+	if [ $? != 0 ]; then
+		echo "Push to codedeploy failed; skipping create-deployment" 1>&2
+	else
+
+		REV_JSON="{\"revisionType\":\"S3\",\"s3Location\":{\"bucket\":\"${DEPLOY_BUCKET}\",\"bundleType\":\"zip\",\"key\":\"${PKG_NAME}\"}}"
+
+		echo "S3://${DEPLOY_BUCKET}/${PKG_NAME}"
+		echo "Application: ${DEPLOY_APP}"
+		echo "Mode: ${DEPLOY_MODE}"
+		echo "Deployment group: ${DEPLOY_GROUP}"
+
+		DEPLOYMENT_RESULT=$(${AWS} deploy create-deployment --region ${REGION} --profile ${DEPLOY_AWS_PROFILE} \
+			--application-name ${DEPLOY_APP} \
+			--deployment-group-name ${DEPLOY_GROUP} \
+			--revision ${REV_JSON} \
+			--output text)
+
+		echo "Deployment ID=${DEPLOYMENT_RESULT}" 1>&2
+
+	fi
+
+}
+
+if [[  $CURRENT_BRANCH == $PROD_BRANCH ]]; then
+
+	DEPLOY_MODE='prod'
+	DEPLOY_BUCKET=$PROD_BUCKET
+	DEPLOY_APP=$PROD_APP
+	DEPLOY_GROUP=$PROD_GROUP
+	DEPLOY_AWS_PROFILE=$PROD_PROFILE
+	deploy_revision
+
+elif [[ $CURRENT_BRANCH == $STAGING_BRANCH ]]; then
+
+	DEPLOY_MODE='staging'
+	DEPLOY_BUCKET=$STAGING_BUCKET
+	DEPLOY_APP=$STAGING_APP
+	DEPLOY_GROUP=$STAGING_GROUP
+	DEPLOY_AWS_PROFILE=${STAGING_PROFILE}
+	deploy_revision
+
+fi

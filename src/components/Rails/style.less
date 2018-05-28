@@ -1,0 +1,190 @@
+@import (reference) "../../theme/variables.less";
+
+
+// the entire collection of rails on a page...
+
+.rails-container {
+  margin-top:20px;
+
+  .slick-arrow {
+      position:absolute;
+      font-size:10rem;
+      font-size: 10rem;
+      color:@font5-color;
+      font-weight:lighter;
+      top: 50%;
+      -webkit-transform: translate(0,-50%);
+      -ms-transform: translate(0,-50%);
+      transform: translate(0,-50%);
+      cursor: pointer;
+      outline: 0;
+  }
+
+  .slick-left-arrow {
+    left:-90px
+  }
+  .slick-right-arrow {
+    right:-90px;
+  }
+
+  .slick-arrow:hover {
+    color:@brand-accent-color;
+  }
+}
+
+@media(max-width: 1000px) {
+  .rails-container {
+    .slick-arrow {
+      font-size:7.0rem;
+    }
+  }
+}
+
+
+// the actual rail slide area - each rail-slider
+
+.rail-slider {
+  margin:30px 50px;
+  a:hover {
+    text-decoration:none;
+    color:@brand-accent-color;
+  }
+
+  a {
+    color:@font-color;
+    text-decoration:none;
+    display:block;
+    width:100%;
+    h2 {
+      font-size: 1.6rem;
+      margin: 5px 21px;
+      text-transform: uppercase;
+    }
+
+  }
+
+
+  //Individual item in the rail
+
+  .slick-slide {
+    padding: 0 20px 20px 20px;
+  }
+
+  .railItem {
+    padding:5px;
+    width:100%;
+    height:100%;
+    background-color:@base-color;
+/*    box-shadow: 10px 10px 5px @base2-color;
+    webkit-box-shadow: 10px 10px 5px @base2-color;
+    moz-box-shadow: 10px 10px 5px @base2-color;
+*/
+    a {
+      display:block;
+      width:100%;
+      height:100%;
+    }
+    a:hover, a:active, a:focus {
+      text-decoration:none;
+      color:#ffffff;
+    }
+    img{
+      max-width:100%;
+      width:100%;
+      height:auto;
+      border: 1px solid @base4-color;
+    }
+
+    .watched {
+      background-color:#000;
+      img {
+        opacity:0.3;
+      }
+    }
+
+
+    .metaInfo {
+      height:55px;
+        h4.metaSeriesTitle {
+            top: 0px;
+            color:@brand-accent-color;
+            font-size:0.7rem;
+            font-weight:bolder;
+            padding:2px;
+          }
+          h4.metaSeriesTitle:hover {
+            text-decoration:underline;
+          }
+          h4.metaTitle {
+            width: 100%;
+            top: 0px;
+            font-size:0.8rem;
+            padding:2px;
+          }
+          h4.metaTitle:hover {
+            text-decoration:underline;
+          }
+    }
+
+    .statusBar {
+      width:100%;
+      background-color:@base4-color;
+      height:3px;
+      .statusPct {
+        width:50%; // for now...
+        height:100%;
+        background-color:@brand-accent-color;
+      }
+    }
+
+  }
+}
+
+@media(max-width:1000px) {
+  .rail-slider {
+      .railItem {
+          .metaInfo {
+            h4.metaTitle {
+              font-size:0.8rem;
+            }
+            h4.metaSeriesTitle {
+              font-size:0.7rem;
+            }
+          }
+        }
+    }
+}
+
+@media(max-width:500px) {
+  .rail-slider:first-child {
+    padding-top:10px;
+  }
+  .rail-slider {
+    margin:0;
+    .slick-slide {
+      padding:0;
+    }
+    a h2 {
+      margin:5px 2px;
+      text-transform:none;
+      font-size:1.2rem;
+    }
+    .railItem {
+      background-color:transparent;
+      .metaInfo {
+        height:inherit;
+        h4.metaTitle {
+          color: #a0a0a0;
+          font-size:0.7rem;
+          max-height:10px;
+        }
+        h4.metaSeriesTitle {
+          display:none;
+        }
+      }
+    }
+  }
+  .slick-arrow {
+    display:none!important;
+  }
+}
